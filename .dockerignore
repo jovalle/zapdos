@@ -1,0 +1,6 @@
+.git
+.cache
+build
+.audit
+__pycache__
+config/credentials

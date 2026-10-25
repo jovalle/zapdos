@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+. /zapdos/hostname.sh
+case ${1:-} in
+    bound|renew)
+        hostname=$(zapdos_hostname "${hostname:-}")
+        export hostname
+        printf '%s\n' "$hostname" > /tmp/dhcp-hostname
+        # Set this before netcfg can attempt reverse DNS or validate an unsafe value.
+        printf '%s\n' "$hostname" > /proc/sys/kernel/hostname
+        ;;
+esac
+exec /bin/sh /zapdos/vendor-udhcpc "$@"

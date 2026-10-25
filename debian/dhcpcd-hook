@@ -1,0 +1,12 @@
+# shellcheck shell=sh
+
+# Executed by dhcpcd after Debian's stock hostname hook.
+case ${reason:-} in
+    BOUND|RENEW|REBIND|REBOOT|EXPIRE|FAIL|NOCARRIER|STOP)
+        . /usr/local/lib/zapdos-hostname.sh
+        name=$(zapdos_hostname "${new_host_name:-}")
+        hostname "$name"
+        printf '%s\n' "$name" > /etc/hostname
+        sed -i "s/^127\.0\.1\.1[[:space:]].*/127.0.1.1 $name/" /etc/hosts
+        ;;
+esac

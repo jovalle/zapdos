@@ -1,0 +1,8 @@
+{
+  "username": "sysadmin",
+  "full_name": "System Administrator",
+  "locale": "en_US.UTF-8",
+  "timezone": "Etc/UTC",
+  "keyboard": "us",
+  "ssh_public_keys": ["ssh-ed25519 REPLACE_WITH_YOUR_PUBLIC_KEY"]
+}
